@@ -42,9 +42,7 @@ public interface DishMapper {
     Page<DishVO> pageQuery(DishPageQueryDTO dishPageQueryDTO);
 
 
-
     /**
-     *
      * @param id
      * @return
      */
@@ -53,8 +51,23 @@ public interface DishMapper {
 
     /**
      * 删除表中的菜品数据
+     *
      * @param id
      */
     @Delete("delete  from  dish where id = #{id}")
     void deleteById(Long id);
+
+    /**
+     * 根据菜品id集合批量删除菜品
+     *
+     * @param ids
+     */
+    void deleteByIds(List<Long> ids);
+
+    /**
+     * 根据id动态修改菜品
+     * @param dish
+     */
+    @AutoFill(OperationType.UPDATE)
+    void update(Dish dish);
 }
